@@ -1,7 +1,6 @@
 This repository contains a variety of programs written for use
 in [PHYS 115C] at UCSB
 
-Descriptions:
-
-ringstarkeffect.py models the Stark effect (action of a perturbing electric field)
-on a 'particle on a ring' quantum system
+Programs/functions included explore models of 2-state systems, a
+'particle-on-a-ring', Rabi flopping, etc. through a perturbing Hamiltonian
+and detuning from the natural frequency of the system

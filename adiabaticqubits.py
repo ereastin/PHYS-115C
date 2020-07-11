@@ -71,12 +71,12 @@ def plotSweepUpandDown(sweepTime):
     times = times[0:2*round(len(times)/2)]
     numSteps = len(times)
     detunings = np.linspace(startDetuning, endDetuning, int(numSteps / 2))
-    detunings = np.concatenate((detunings, np.flipud(detunings)))
+    detunings = np.concatenate((detunings, np.flipud(detunings)))    
     H_0 = HamiltonianOmegaDetuning(Omega, startDetuning, coupling)
     w, v = np.linalg.eigh(H_0)
     psi = v[1]
     energies = times * 0
-    for i in range(0, numSteps + 1):
+    for i in range(0, numSteps):
         H = HamiltonianOmegaDetuning(Omega, detunings[i], coupling)
         A = -1j * i * timeStep * H
         psi = np.matmul(linalg.expm(A), psi)
@@ -90,11 +90,11 @@ def HamiltonianBzBx(Bz, Bx):
 
 
 def plotRabiflops(detuning):
-    Bx0 = 1.4
+    Bx0 = .7
     Bz = 10
     t = np.linspace(0, 51, 10000)
     timeStep = 0.01
-    omegaf = 15.7
+    omegaf = 2
     Bx = Bx0 * np.cos((omegaf + detuning) * t)
     H_0 = HamiltonianBzBx(Bz, Bx0)
     w, v = np.linalg.eigh(H_0)
@@ -111,9 +111,11 @@ def plotRabiflops(detuning):
     plt.plot(t, Bx, label='Bx-field')
         
     
-    
+plotManySweeps()
+plotSweepsUpandDown()
 
-plotRabiflops(.1)
+
+plotRabiflops(10)
 plt.grid()
 plt.legend()
 plt.show()
